@@ -1,6 +1,19 @@
 # NodeGateway
-
 English | [简体中文](./README-zh.md)
+
+## Introduction
+
+NodeGateway is blockchain node access service platform similar to infrua on Ethereum which is a public blockchain（will support FIL、ETH etc）node access service for developers. Developers who want to develop DAPP in FVM or other application can use NodeGateway API to interact with the chain without deploying their own blockchain nodes.We will technically guarantee its strong and stable performance.Assuming that the developer has already use FIL node which they deployed self before, they can access the NodeGateway only by modifying the URL without changing the interface.
+
+## Website
+
+https://node-gateway.storeros.com/console/#/
+
+username:test
+
+password:test
+
+**Note:** Under development, the function is not perfect
 
 ## Build Setup
 
