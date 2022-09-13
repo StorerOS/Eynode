@@ -2,6 +2,7 @@
 @import './element-variables.scss';
 @import './variables.scss';
 @import './mixin.scss';
+@import './animation.scss';
 @import './transition.scss';
 @import './element-ui.scss';
 @import './sidebar.scss';
@@ -12,16 +13,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-}
-
-label {
-  font-weight: 700;
+  font-family: SourceHanSansCN-Regular, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-weight: $fontWeightMedium;
 }
 
 html {
   height: 100%;
   box-sizing: border-box;
+  line-height: 1.3;
 }
 
 #app {
@@ -65,13 +64,4 @@ div:focus {
 // main-container global css
 .app-container {
   padding: 20px;
-}
-
-div#nprogress {
-  .bar {
-    background: $colorPrimary;
-    .peg {
-      box-shadow: 0 0 10px $colorPrimary, 0 0 5px $colorPrimary;
-    }
-  }
 }

@@ -1,28 +1,29 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <app-header />
     <sidebar class="sidebar-container" :class="{'mobile-sidebar-container': device==='mobile' && sidebar.opened}" />
     <div class="main-container">
+      <app-header />
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
       </div>
       <app-main />
+      <app-footer />
     </div>
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain, AppHeader } from './components'
+import { Navbar, Sidebar, AppMain, AppHeader, AppFooter } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
-
 export default {
   name: 'Layout',
   components: {
     Navbar,
     Sidebar,
     AppMain,
-    AppHeader
+    AppHeader,
+    AppFooter
   },
   mixins: [ResizeMixin],
   computed: {
@@ -59,8 +60,10 @@ export default {
   .app-wrapper {
     @include clearfix;
     position: relative;
-    height: 100%;
     width: 100%;
+    // overflow: hidden;
+    background:#FAFAFA;
+    // background:#000;
     &.mobile.openSidebar{
       position: fixed;
       top: 0;
@@ -91,9 +94,5 @@ export default {
 
   .mobile .fixed-header {
     width: 100%;
-  }
-
-  .copyright {
-    margin-right: 10px;
   }
 </style>

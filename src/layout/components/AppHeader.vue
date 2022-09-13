@@ -1,32 +1,34 @@
 <template>
   <div class="header">
-    <div class="header__home" @click="$router.push('/')">
-      <img src="@/assets/logo.png" class="header__logo__image" alt="logo">
-      <h3 class="header__title">{{ title }}</h3>
-    </div>
     <div class="header__operation">
-      <div class="header__operation__btn" @click="refresh"><i class="el-icon-refresh-right" /></div>
+      <div class="header__operation__btn" @click="refresh"><svg-icon icon-class="ic_refresh" /></div>
       <screenfull class="header__operation__btn" />
-      <div class="header__operation__btn header__user">
-        <el-dropdown class="avatar-container" trigger="click">
+      <!-- <div class="header__operation__btn">
+        <svg-icon icon-class="ic_user" />
+        <span>{{ userInfo && userInfo.user_name }}</span>
+      </div> -->
+      <div class="header__operation__btn ">
+        <el-dropdown class="avatar-container" trigger="hover">
           <div class="header__user__wrapper">
-            <i class="el-icon-user" />
-            {{ userInfo && userInfo.user_name }}
-            <i class="el-icon-caret-bottom" />
+            <svg-icon icon-class="ic_user" />
+            <span>{{ userInfo && userInfo.user_name }}</span>
           </div>
-          <el-dropdown-menu slot="dropdown" class="user-dropdown">
-            <el-dropdown-item @click.native="logout">
-              <span style="display:block;">退出登录</span>
+          <!-- <el-dropdown-menu slot="dropdown" class="user-dropdown">
+            <el-dropdown-item @click.native="showChangePassword">
+              <span style="display:block;">修改密码</span>
             </el-dropdown-item>
-          </el-dropdown-menu>
+          </el-dropdown-menu> -->
         </el-dropdown>
       </div>
+    </div>
+    <div class="header__operation__close" @click="logout">
+      <svg-icon icon-class="ic_close" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import Screenfull from '@/components/Screenfull'
 import { title } from '@/settings'
 
@@ -42,10 +44,15 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'userInfo'
+      'userInfo',
+      'sidebar'
     ])
   },
   methods: {
+    ...mapActions('user', ['updateChangePasswordDialog']),
+    showChangePassword() {
+      this.updateChangePasswordDialog(true)
+    },
     async logout() {
       await this.$store.dispatch('user/logout')
       // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
@@ -64,47 +71,45 @@ export default {
 
 .header {
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 5px 20px;
+  padding:15px 0 10px;
+  display: flex;
+  align-items: center;
   z-index: 99;
-  box-shadow: rgba(204, 204, 204, 0.2) 0px 3px 2px;
-  background-color: #ffffff;
-  &__home {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    float: left;
+  .svg-icon{
+    font-size: $headerIconSize;
   }
-  &__logo {
-    height: 34px;
-    width: 22px;
-    border: 4px solid $colorPrimary;
-    &__image {
-      width: 30px;
-    }
-  }
-  &__title {
-    font-size: $fontSizeLarge;
-    font-weight: 700;
-    margin-left: 20px;
-    color: $colorPrimary;
+  // box-shadow: rgba(204, 204, 204, 0.2) 0px 3px 2px;
+  &__operation__close{
+    width:64px;
+    height: $headerHeight;
+    text-align: center;
+    line-height: $headerHeight;
+    background: $headerBackgroundColor;
+    margin:0 0 0 10px;
+    border-radius: 10px;
   }
   &__operation {
-    float: right;
+    width: 100%;
     font-size: $fontSizeLarge;
+    background:$headerBackgroundColor;
     display: flex;
+    justify-content: flex-end;
+    padding:0 60px;
+    border-radius: 10px;
     &__btn {
-      height: 40px;
+      height: $headerHeight;
       display: flex;
+      font-size: 16px;
       justify-content: center;
       align-items: center;
       padding: 0px 10px;
       margin: 0px 10px;
       cursor: pointer;
+      span{
+        margin: 0 0 0 12px;
+      }
     }
+
     :last-of-type {
       margin-right: 0;
     }

@@ -1,18 +1,42 @@
 function findData(list, value, valueKey) {
   return ![undefined, null].includes(value) ? list.find(item => item[valueKey || 'value'] === value) || {} : list
 }
-
 export function projectTypeStatus(code) {
   const list = [
     {
       value: 1,
-      text: 'Filecoin'
+      text: 'Filecoin',
+      sText: 'FIL',
+      disable: false
     }, {
       value: 2,
-      text: 'ETH'
-    }, {
-      value: 3,
-      text: 'BTC'
+      text: 'ETEthereumH',
+      sText: 'ETH',
+      disable: false
+
+    },
+    // {
+    //   value: 3,
+    //   text: 'BTC'
+    // },
+    {
+      value: 4,
+      text: 'NEAR',
+      sText: 'NEAR',
+      disable: false
+
+    },
+    {
+      value: 5,
+      text: 'IPFS',
+      sText: 'IPFS',
+      disable: false
+    },
+    {
+      value: 6,
+      text: 'Solana',
+      sText: 'SOL',
+      disable: true
     }
   ]
   return findData(list, code)
@@ -22,11 +46,11 @@ export function runStatus(code) {
   const list = [
     {
       value: false,
-      text: '正常',
+      text: 'Normal',
       type: 'success'
     }, {
       value: true,
-      text: '删除',
+      text: 'Delete',
       type: 'danger'
     }
   ]
@@ -37,13 +61,19 @@ export function availableStatus(code) {
   const list = [
     {
       value: 1,
-      text: '启用',
+      text: 'Enable',
       type: 'success'
     }, {
       value: 2,
-      text: '禁用',
+      text: 'Disabled',
       type: 'danger'
     }
   ]
   return findData(list, code)
+}
+
+export const docsHostMap = {
+  dev: 'https://dev-ng-docs.storeros.com',
+  test: 'https://test-ng-docs.storeros.com',
+  prod: 'https://docs.ey-node.com'
 }

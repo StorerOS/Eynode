@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i :class="isFullscreen ? 'el-icon-copy-document' : 'el-icon-full-screen'" @click="click" />
+    <svg-icon :icon-class="isFullscreen ? 'ic_zoom' : 'ic_enlarge'" @click="click" />
   </div>
 </template>
 
@@ -48,13 +48,14 @@ export default {
 }
 </script>
 
-<style scoped>
-.screenfull-svg {
+<style lang="scss" scoped>
+@import "~@/styles/mixin.scss";
+
+.svg-icon {
   display: inline-block;
   cursor: pointer;
-  fill: #5a5e66;;
-  width: 20px;
-  height: 20px;
+  fill: #5a5e66;
+  font-size: $headerIconSize;
   vertical-align: 10px;
 }
 </style>

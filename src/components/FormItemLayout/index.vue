@@ -2,9 +2,9 @@
  * @Author: yaohongbin
  * @Date: 2021-10-28 09:29:22
  * @LastEditors: yaohongbin
- * @LastEditTime: 2022-02-21 16:31:59
- * @FilePath: \node-gateway-grant\src\components\FormItemLayout\index.vue
- * @Description: 表单布局组件
+ * @LastEditTime: 2022-06-29 14:05:06
+ * @FilePath: \node-user-frontend\src\components\FormItemLayout\index.vue
+ * @Description: Form layout components
 -->
 
 <template>

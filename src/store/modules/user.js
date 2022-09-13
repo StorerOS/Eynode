@@ -1,4 +1,4 @@
-import { login, logout } from '@/api/user'
+import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, getUserInfo, setUserInfo, removeAllAuthInfo } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -7,8 +7,7 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
-    userInfo: getUserInfo() || null,
-    permissionsRoutes: []
+    userInfo: getUserInfo() || null
   }
 }
 
@@ -30,8 +29,11 @@ const mutations = {
   SET_USER_INFO: (state, info) => {
     state.userInfo = info
   },
-  SET_PERMISSIONS_ROUTES: (state, routes) => {
-    state.permissionsRoutes = routes
+  SET_ALL_USER_INFO: (state, data) => {
+    state.token = data.auth_token
+    state.userInfo = data
+    setToken(data.auth_token)
+    setUserInfo(data)
   }
 }
 
@@ -42,16 +44,35 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ name: name.trim(), password: password }).then(response => {
         const { data } = response
-        commit('SET_TOKEN', data.auth_token)
-        setToken(data.auth_token)
-        commit('SET_USER_INFO', data)
-        setUserInfo(data)
+        commit('SET_ALL_USER_INFO', data)
         resolve()
       }).catch(error => {
         reject(error)
       })
     })
   },
+
+  // get user info
+  getInfo({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      getInfo(state.token).then(response => {
+        const { data } = response
+
+        if (!data) {
+          return reject('Verification failed, please Login again.')
+        }
+
+        const { name, avatar } = data
+
+        commit('SET_NAME', name)
+        commit('SET_AVATAR', avatar)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
   // user logout
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
@@ -68,9 +89,7 @@ const actions = {
       })
     })
   },
-  setPermissionsRoutes({ commit }, routes) {
-    commit('SET_PERMISSIONS_ROUTES', routes)
-  },
+
   // remove token
   resetToken({ commit }) {
     return new Promise(resolve => {
@@ -79,6 +98,16 @@ const actions = {
       commit('RESET_STATE')
       resolve()
     })
+  },
+  setToken({ commit }, token) {
+    commit('SET_TOKEN', token)
+  },
+  setUserInfo({ commit }, info) {
+    commit('SET_USER_INFO', info)
+  },
+  // set all user info
+  setAllUserInfo({ commit }, data) {
+    commit('SET_ALL_USER_INFO', data)
   }
 }
 

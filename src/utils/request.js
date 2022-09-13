@@ -5,9 +5,9 @@ import { getToken } from '@/utils/auth'
 import fileDownload from 'js-file-download'
 import _ from 'lodash'
 
-async function getResponseDataAndBlob(res) {
-  let resBlobData
-  if (res && res.data) resBlobData = res.data
+async function requestDataOrBlob(res) {
+  let resBlob = ''
+  if (res && res.data) resBlob = res.data
   let resData = null
   try {
     const data = await new Promise((resolve, reject) => {
@@ -17,19 +17,19 @@ async function getResponseDataAndBlob(res) {
       reader.addEventListener('loadend', () => {
         resolve(reader.result)
       })
-      reader.readAsText(resBlobData)
+      reader.readAsText(resBlob)
     })
     resData = JSON.parse(data)
   // eslint-disable-next-line no-empty
   } catch (err) {}
-  return { resData, resBlobData }
+  return { resData, resBlob }
 }
 
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5 * 1000, // request timeout
+  timeout: 30 * 1000, // request timeout
   responseType: 'blob'
 })
 
@@ -65,7 +65,7 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   async response => {
-    const { resData, resBlobData } = await getResponseDataAndBlob(response)
+    const { resData, resBlobData } = await requestDataOrBlob(response)
     const resHeader = resData.header
 
     if ([0].includes(resHeader && resHeader.code)) {
@@ -99,36 +99,35 @@ service.interceptors.response.use(
       })
       if ([1001].includes(resHeader.code)) {
         // to re-login
-        MessageBox.confirm('该账户已在其他地方登录，请注意账户安全。', '风险提示', {
+        MessageBox.confirm('The account is already logged in elsewhere, please pay attention to account security.', 'Risk warning', {
           showClose: false,
-          confirmButtonText: '重新登录',
+          confirmButtonText: 'Re-register',
           showCancelButton: false,
           closeOnClickModal: false,
           closeOnPressEscape: false,
           type: 'error'
         }).then(() => {
           store.dispatch('user/resetToken').then(() => {
-            location.reload()
+            window.location.href = '/#/login'
           })
         })
-      } else {
-        const { config } = response
-        const resSerialize = JSON.stringify(
-          _.assign(resHeader || { message: 'Server Error' }, {
-            requestConfigUrl: config.url,
-            requestConfigBody: config.data
-          })
-        )
-        return Promise.reject(resSerialize)
       }
+      const { config } = response
+      const resSerialize = JSON.stringify(
+        _.assign(resHeader || { message: 'Server Error' }, {
+          requestConfigUrl: config.url,
+          requestConfigBody: config.data
+        })
+      )
+      return Promise.reject(resSerialize)
     }
   },
   error => {
     console.log('err' + error) // for debug
     if (error.response.status === 401) {
       // 处理token失效鉴权失败的问题
-      MessageBox.confirm('会话超时，请重新登录', '超时提示', {
-        confirmButtonText: '重新登录',
+      MessageBox.confirm('Session timed out, please log in again', 'Timeout prompt', {
+        confirmButtonText: 'Re-register',
         showClose: false,
         showCancelButton: false,
         closeOnClickModal: false,
@@ -136,7 +135,7 @@ service.interceptors.response.use(
         type: 'error'
       }).then(() => {
         store.dispatch('user/resetToken').then(() => {
-          location.reload()
+          window.location.href = '/#/login'
         })
       })
     } else {

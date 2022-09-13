@@ -2,9 +2,9 @@
  * @Author: yaohongbin
  * @Date: 2021-11-04 18:49:48
  * @LastEditors: yaohongbin
- * @LastEditTime: 2022-02-21 16:31:55
- * @FilePath: \node-gateway-grant\src\components\RoleInput\index.vue
-* @Description: 角色名称搜索组件
+ * @LastEditTime: 2022-06-29 14:05:22
+ * @FilePath: \node-user-frontend\src\components\RoleInput\index.vue
+* @Description: Character name search component
 -->
 
 <template>

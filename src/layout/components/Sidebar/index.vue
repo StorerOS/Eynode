@@ -12,6 +12,10 @@
         <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
+    <div class="sidebar-icon-container__btn" @click="toggleSideBar">
+      <div class="bg" />
+      <svg-icon :icon-class="sidebar.opened ? 'ic_arrow_left':'ic_arrow_right'" />
+    </div>
   </div>
 </template>
 
@@ -26,11 +30,10 @@ export default {
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
-      'sidebar',
-      'permissionsRoutes'
+      'sidebar'
     ]),
     routes() {
-      const routers = [...constantRoutes, ...this.permissionsRoutes]
+      const routers = [...constantRoutes]
       return routers
     },
     activeMenu() {
@@ -51,6 +54,34 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
+  },
+  methods: {
+    toggleSideBar() {
+      this.$store.dispatch('app/toggleSideBar')
+    }
   }
 }
 </script>
+<style lang="scss" scoped>
+.sidebar-icon-container{
+  &__btn{
+    .bg{
+    position: absolute;
+      opacity: 0.1;
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+    }
+    font-size: 14px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 46px;
+    text-align: center;
+    line-height: 46px;
+    .svg-icon{
+      margin-right: 0!important;
+    }
+  }
+}
+</style>

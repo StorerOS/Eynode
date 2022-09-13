@@ -2,9 +2,9 @@
  * @Author: yaohongbin
  * @Date: 2021-11-01 09:39:09
  * @LastEditors: yaohongbin
- * @LastEditTime: 2022-02-21 16:32:02
- * @FilePath: \node-gateway-grant\src\components\SearchInput\index.vue
- * @Description: 输入搜索组件
+ * @LastEditTime: 2022-06-29 14:05:33
+ * @FilePath: \node-user-frontend\src\components\SearchInput\index.vue
+ * @Description: Input search component
 -->
 
 <template>
@@ -44,7 +44,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: '请输入内容'
+      default: 'Please enter content'
     },
     responseCallback: {
       type: Function,

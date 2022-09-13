@@ -115,3 +115,50 @@ export function param2Obj(url) {
   })
   return obj
 }
+
+/**
+ * @description: 计算和当前时间的差异
+ * @param {Date} date
+ * @return {String}
+ */
+export function timeAgo(date) {
+  if (!date || String(new Date(date)) === 'Invalid Date') {
+    throw new Error('Date format error: ' + date)
+  }
+  const d = new Date(date)
+  const now = Date.now()
+  const diff = (now - d) / 1000
+
+  const minutes = 60
+  const hours = minutes * 60
+  const days = hours * 24
+
+  const diffSeconds = Math.floor(diff % minutes)
+  const diffMinutes = Math.floor((diff % hours) / minutes)
+  const diffHours = Math.floor((diff % days) / hours)
+
+  let timeText = ''
+  if (diff < minutes) {
+    timeText = `${diffSeconds}秒前`
+  } else if (diff < hours) {
+    timeText = `${Math.floor(diff / minutes)}分钟${diffSeconds}秒前`
+  } else if (diff < days) {
+    timeText = `${Math.floor(diff / hours)}小时${diffMinutes}分钟${diffSeconds}秒前`
+  } else {
+    timeText = `${Math.floor(diff / days)}天${diffHours}小时${diffMinutes}分钟${diffSeconds}秒前`
+  }
+  return timeText
+}
+
+export function getHostEnv() {
+  const { hostname } = window.location
+  const envName = hostname.match(/^(\w+)\-*.*$/)
+  const envs = ['dev', 'test', 'stag', 'prod']
+  const matchName = envName[1]
+  if (envs.includes(matchName)) {
+    return matchName
+  } else if (!(hostname === 'localhost' || /^\d+\.\d+.\d+\.\d+$/.test(hostname))) {
+    return 'prod'
+  }
+  return 'dev'
+}

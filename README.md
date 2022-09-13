@@ -1,28 +1,14 @@
-# NodeGateway
-English | [简体中文](./README-zh.md)
+# Eynode
 
-## Introduction
-
-NodeGateway is blockchain node access service platform similar to infrua on Ethereum which is a public blockchain（will support FIL、ETH 、NEAR etc）node access service for developers. Developers who want to develop DAPP in FVM or other application can use NodeGateway API to interact with the chain without deploying their own blockchain nodes.We will technically guarantee its strong and stable performance.Assuming that the developer has already use FIL node which they deployed self before, they can access the NodeGateway only by modifying the URL without changing the interface.
-
-## Website
-
-https://node-gateway.storeros.com/
-
-username:test
-
-password:test
-
-**Note:** Alpha Version, not perfect
 
 ## Build Setup
 
 ```bash
 # clone the project
-git clone https://github.com/StorerOS/NodeGateway.git
+git clone https://github.com/StorerOS/Eynode
 
 # enter the project directory
-cd NodeGateway
+cd Eynode
 
 # install dependency
 yarn install
@@ -58,6 +44,8 @@ yarn lint
 # code format check and auto fix
 yarn lint -- --fix
 ```
+
+Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/guide/essentials/deploy.html) for more information
 
 ## Browsers support
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="navbar__hamburger" @toggleClick="toggleSideBar" />
+  <div v-if="hasNavbar" class="navbar">
+    <!-- <hamburger :is-active="sidebar.opened" class="navbar__hamburger" @toggleClick="toggleSideBar" /> -->
     <breadcrumb class="breadcrumb-container" />
   </div>
 </template>
@@ -23,7 +23,11 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar'
-    ])
+    ]),
+    hasNavbar() {
+      const isShow = !this.$route.meta.hiddenNavbar
+      return isShow
+    }
   },
   watch: {
     '$route': function(to, from) {
@@ -53,9 +57,11 @@ export default {
   overflow: hidden;
   position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  // box-shadow: 0 1px 4px rgba(0,21,41,.08);
   box-sizing: border-box;
   display: flex;
+  padding: 0 15px;
+  border-radius: 10px;
   &__hamburger {
     height: 100%;
     cursor: pointer;

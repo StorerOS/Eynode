@@ -2,9 +2,9 @@
  * @Author: yaohongbin
  * @Date: 2021-11-04 18:49:48
  * @LastEditors: yaohongbin
- * @LastEditTime: 2021-12-14 15:29:56
- * @FilePath: \node-gateway-grant\src\components\UserInput\index.vue
-* @Description: 用户名称搜索组件
+ * @LastEditTime: 2022-06-29 14:05:42
+ * @FilePath: \node-user-frontend\src\components\UserInput\index.vue
+* @Description: User name search component
 -->
 
 <template>

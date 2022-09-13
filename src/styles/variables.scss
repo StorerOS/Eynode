@@ -1,30 +1,64 @@
-$colorPrimary: #0079fe;
-$colorTextPrimary: #303133;
-$colorTextRegular: #606266;
+$colorPrimary: #26C1F7;
+$colorDanger: #FF4D4F;
+$colorSuccess: #52C41A;
+
+// text color
+$colorTextHeavy: #141414;
+$colorTextPrimary: #333333;
+$colorTextLight: #999999;
 $colorTextSecondary: #909399;
-$colorTextPlaceholder: #C0C4CC;
-
-$colorPrimaryHover: #66b1ff;
-
-$colorDanger: #F56C6C;
-$colorSuccess: #67C23A;
 
 
-$fontSizeExtraSmall: 12px;
-$fontSizeLarge: 18px;
-$fontSizeMedium: 16px;
-
-$borderColorBase: #DCDFE6;
-$borderColorLight: #E4E7ED;
+// border color
+$borderColorPrimary: #77D0FF;
+$borderColorLight: #F0F0F0;
 
 $fontLineHeightPrimary: 24px;
 $fontLineHeightSecondary: 12px;
 
-$backgroundColorLight: #f4f4f5;
-$backgroundColorLowLight: #e8e8e8;
-$backgroundColorlighter: #909399;
+$backgroundColorPrimary: #E0F3FF;
+$backgroundColorLight: #999999;
+$activeBackgroundColor: #F8FCFE;
 
-$borderColorLightweight: #e9e9eb;
+
+// font weight
+$fontWeightMedium: 400;
+$fontWeightPrimary: 500;
+$fontWeightHeavy: bold;
+$fontWeightTopHeavy: 800;
+
+// font size
+$fontSizeExtraSmall: 12px;
+$fontSizeLowMedium: 14px;
+$fontSizeMedium: 16px;
+$fontSizeLarge: 18px;
+$fontSizeCeilLarge: 20px;
+$fontSizeCeilVeryLarge: 22px;
+$fontSizeVeryLarge: 24px;
+
+
+
+$defaultSpace:15px;
+$defaultHorizontalSpace:15px;
+$defaultVerticalSpace:10px;
+$defaultBorderRadius:10px;
+
+// border radius
+$borderRadiusSpecialSmall: 2px;
+$borderRadiusSmall: 4px;
+$borderRadiusTopSmall: 5px;
+$borderRadiusBase: 6px;
+$borderRadiusMedium: 10px;
+$borderRadiusLarge: 12px;
+
+$normalFontFamilyType: SourceHanSansCN-Normal, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+$regularFontFamilyType: SourceHanSansCN-Regular, SourceHanSansCN-Normal, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+$mediumFontFamilyType: SourceHanSansCN-Medium, SourceHanSansCN-Normal, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+$boldFontFamilyType: SourceHanSansCN-Bold, SourceHanSansCN-Normal, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+$HeavyFontFamilyType: SourceHanSansCN-Heavy, SourceHanSansCN-Normal, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+
+
+$layoutContentWidth: 1340px;
 
 // sidebar
 $menuText:#bfcbd9;
@@ -42,34 +76,49 @@ $sideBarWidth: 210px;
 $headerHeight: 50px;
 $footerHeight: 50px;
 
+// sidebar
+$menuText:#bfcbd9;
+$menuTextColor:#FFFFFF;
+$menuActiveText:#0079fe;
+$subMenuActiveText:#f4f4f5; //https://github.com/ElemeFE/element/issues/12951
+$menuBg:#304156;
+$menuHover:#263445;
+$subMenuBg:transparent;
+$subMenuHover:#001528;
+$sideBarWidth: 240px;
+$sideBarBackgroundColor:linear-gradient(180deg, #0076FE 0%, #45E1E0 100%);
+
+// header
+$headerHeight: 60px;
+$headerBackgroundColor:#FFFFFF;
+$headerIconSize:18px;
+
+
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
 :export {
-  themeColor: $colorPrimary;
-  colorTextRegular: $colorTextRegular;
-  colorTextPrimary: $colorTextPrimary;
-  colorTextSecondary: $colorTextSecondary;
-  colorTextPlaceholder: $colorTextPlaceholder;
-  colorPrimaryHover: $colorPrimaryHover;
+  colorPrimary: $colorPrimary;
   colorDanger: $colorDanger;
   colorSuccess: $colorSuccess;
+  colorTextHeavy: $colorTextHeavy;
+  colorTextPrimary: $colorTextPrimary;
+  colorTextLight: $colorTextLight;
+  fontWeightMedium: $fontWeightMedium;
+  fontWeightPrimary: $fontWeightPrimary;
+  fontWeightHeavy: $fontWeightHeavy;
   fontSizeExtraSmall: $fontSizeExtraSmall;
-  fontSizeLarge: $fontSizeLarge;
+  fontSizeLowMedium: $fontSizeLowMedium;
   fontSizeMedium: $fontSizeMedium;
-  borderColorBase: $borderColorBase;
-  borderColorLight: $borderColorLight;
-  fontLineHeightPrimary: $fontLineHeightPrimary;
-  fontLineHeightSecondary: $fontLineHeightSecondary;
-  backgroundColorLight: $backgroundColorLight;
-  backgroundColorlighter: $backgroundColorlighter;
-  borderColorLightweight: $borderColorLightweight;
-  menuText: $menuText;
-  menuActiveText: $menuActiveText;
-  subMenuActiveText: $subMenuActiveText;
-  menuBg: $menuBg;
-  menuHover: $menuHover;
-  subMenuBg: $subMenuBg;
-  subMenuHover: $subMenuHover;
-  sideBarWidth: $sideBarWidth;
-  headerHeight: $headerHeight;
+  fontSizeLarge: $fontSizeLarge;
+  fontSizeVeryLarge: $fontSizeVeryLarge;
+  borderRadiusSpecialSmall: $borderRadiusSpecialSmall;
+  borderRadiusSmall: $borderRadiusSmall;
+  borderRadiusBase: $borderRadiusBase;
+  borderRadiusMedium: $borderRadiusMedium;
+  borderRadiusLarge: $borderRadiusLarge;
+  layoutContentWidth: $layoutContentWidth;
+  regularFontFamilyType: $regularFontFamilyType;
+  mediumFontFamilyType: $mediumFontFamilyType;
+  boldFontFamilyType: $boldFontFamilyType;
 }
+

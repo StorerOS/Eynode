@@ -46,3 +46,14 @@
 .breadcrumb-leave-active {
   position: absolute;
 }
+
+/* list transition */
+.list-enter-active {
+  animation: opacity-in 1s;
+}
+.list-leave-active {
+  animation: opacity-in 1s reverse;
+}
+.list-move {
+  transition: all 1s;
+}

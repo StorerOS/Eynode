@@ -21,12 +21,12 @@ export default {
 .app-main {
   /*50 = navbar  */
   width: 100%;
-  padding: 20px;
+  /* padding: 20px 20px 50px; */
   position: relative;
   overflow: hidden;
 }
 .fixed-header+.app-main {
-  padding-top: 50px;
+  /* padding-top: 50px; */
 }
 </style>
 

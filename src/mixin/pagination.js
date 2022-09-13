@@ -15,9 +15,9 @@ export default {
     }
   },
   methods: {
-    $_paginationMixin_search() {
+    $_paginationMixin_search(params) {
       this.paginationMixin.currentPage = 1
-      this[this.paginationSearchNameMixin]()
+      this[this.paginationSearchNameMixin](params)
     },
     $_paginationMixin_handleSizeChange(val) {
       this.paginationMixin.pageSize = val

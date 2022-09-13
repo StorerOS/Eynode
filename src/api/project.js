@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 获取项目列表
+// get project list
 export function getProjectList(data) {
   return request({
     url: '/project/list',
@@ -9,7 +9,7 @@ export function getProjectList(data) {
   })
 }
 
-// 创建项目
+// create project
 export function createProject(data) {
   return request({
     url: '/project/create',
@@ -18,7 +18,7 @@ export function createProject(data) {
   })
 }
 
-// 编辑项目
+// edit project
 export function editProject(data) {
   return request({
     url: '/project/edit',
@@ -27,7 +27,7 @@ export function editProject(data) {
   })
 }
 
-// 删除项目
+// delete project
 export function deleteProject(data) {
   return request({
     url: '/project/delete',
